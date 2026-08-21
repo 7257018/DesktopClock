@@ -2,9 +2,12 @@
 /*
 
 # 仅保留以下关键文件
+!.github/
+!.github/**
 !.gitignore
 !clock.py
 !build.bat
 !requirements.txt
 !icon.ico
 !README.md
+!TODO.md
