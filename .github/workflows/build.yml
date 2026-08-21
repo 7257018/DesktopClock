@@ -27,12 +27,19 @@ jobs:
           pip install "pyinstaller>=6.0"
           pyinstaller --onefile --windowed --name DesktopClock --clean --noconfirm --icon=icon.ico clock.py
 
+      - name: Get build timestamp
+        id: timestamp
+        run: |
+          $ts = (Get-Date -Format "yyyy.MM.dd-HHmmss")
+          echo "version=V$ts" >> $env:GITHUB_OUTPUT
+          echo "Build timestamp: V$ts"
+
       - name: Create Release and Upload Asset
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: build-${{ github.sha }}
-          name: Auto Build ${{ github.sha }}
+          tag_name: ${{ steps.timestamp.outputs.version }}
+          name: ${{ steps.timestamp.outputs.version }}
           files: dist/DesktopClock.exe
           generate_release_notes: true
-        env: 
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
