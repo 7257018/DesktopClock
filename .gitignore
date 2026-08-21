@@ -1,0 +1,10 @@
+# 排除根目录下所有内容
+/*
+
+# 仅保留以下关键文件
+!.gitignore
+!clock.py
+!build.bat
+!requirements.txt
+!icon.ico
+!README.md
